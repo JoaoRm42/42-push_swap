@@ -12,33 +12,22 @@
 
 #include "push_swap_bonus.h"
 
-void	ft_swap(t_list *stack)
-{
-	int	tmp;
-
-	if (stack)
-		tmp = stack->valor;
-	else
-		return ;
-	stack->valor = stack->next->valor;
-	stack->next->valor = tmp;
-	tmp = stack->index;
-	stack->index = stack->next->index;
-	stack->next->index = tmp;
-}
-
 void	sa(t_list **stack_a)
 {
-	ft_swap(*stack_a);
+	if (stack_a)
+		stack_swap(*stack_a);
 }
 
 void	sb(t_list **stack_b)
 {
-	ft_swap(*stack_b);
+	if (stack_b)
+		stack_swap(*stack_b);
 }
 
 void	ss(t_list **stack_a, t_list **stack_b)
 {
-	ft_swap(*stack_a);
-	ft_swap(*stack_b);
+	if (stack_a)
+		stack_swap(*stack_a);
+	if (stack_b)
+		stack_swap(*stack_b);
 }

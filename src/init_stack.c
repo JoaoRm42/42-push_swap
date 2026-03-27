@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_shared.h"
 
-void	*checknextvalue(t_list *stack)
+static t_list	*checknextvalue(t_list *stack)
 {
 	while (stack->next)
 		stack = stack->next;
@@ -54,6 +54,7 @@ t_list	*startstack(long int value)
 t_list	*init_stack(int ac, char **av)
 {
 	t_list		*stack_a;
+	t_list		*new;
 	int			i;
 	long int	number;
 
@@ -65,10 +66,10 @@ t_list	*init_stack(int ac, char **av)
 		number = ft_atoi(av[i]);
 		if (number > INT_MAX || number < INT_MIN)
 			check_error(&stack_a, NULL);
-		if (i == 1)
-			stack_a = startstack((int)number);
-		else
-			addnextvalue(&stack_a, startstack((int)number));
+		new = startstack((int)number);
+		if (!new)
+			check_error(&stack_a, NULL);
+		addnextvalue(&stack_a, new);
 		i++;
 	}
 	return (stack_a);

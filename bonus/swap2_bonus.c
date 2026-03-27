@@ -12,25 +12,12 @@
 
 #include "push_swap_bonus.h"
 
-void	ft_swap2(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*tmp;
-
-	if (*stack_a && *stack_b)
-		tmp = (*stack_a)->next;
-	else
-		return ;
-	(*stack_a)->next = *stack_b;
-	*stack_b = *stack_a;
-	*stack_a = tmp;
-}
-
 void	pa(t_list **stack_a, t_list **stack_b)
 {
-	ft_swap2(stack_b, stack_a);
+	stack_push(stack_b, stack_a);
 }
 
 void	pb(t_list **stack_a, t_list **stack_b)
 {
-	ft_swap2(stack_a, stack_b);
+	stack_push(stack_a, stack_b);
 }

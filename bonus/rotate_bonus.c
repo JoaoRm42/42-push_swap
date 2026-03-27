@@ -12,61 +12,18 @@
 
 #include "push_swap_bonus.h"
 
-void	reverse(t_list **stack)
-{
-	t_list	*tmp;
-	t_list	*n;
-
-	if (*stack)
-		tmp = *stack;
-	else
-		return ;
-	*stack = (*stack)->next;
-	n = checknextvalue(*stack);
-	tmp->next = NULL;
-	n->next = tmp;
-}
-
-//ra (rotate a)
 void	ra(t_list **stack)
 {
-	reverse(stack);
+	stack_rotate(stack);
 }
 
-//rb (rotate b)
 void	rb(t_list **stack)
 {
-	reverse(stack);
+	stack_rotate(stack);
 }
 
-//rr (ra and rb)
 void	rr(t_list **stack_a, t_list **stack_b)
 {
-	reverse(stack_a);
-	reverse(stack_b);
-}
-
-void	rs(t_list **stack_a)
-{
-	int	min;
-	int	size;
-
-	min = checkerlowindex(stack_a);
-	size = checkersize(*stack_a);
-	if (min > (size / 2))
-	{
-		while (min < size)
-		{
-			rra(stack_a);
-			min++;
-		}
-	}
-	else
-	{
-		while (min > 0)
-		{
-			ra(stack_a);
-			min--;
-		}
-	}
+	stack_rotate(stack_a);
+	stack_rotate(stack_b);
 }

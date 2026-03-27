@@ -74,7 +74,7 @@ static int	read_and_add(char **line, int fd)
 	while (bytes_read > 0)
 	{
 		buf[bytes_read] = 0;
-		if (!line)
+		if (!*line)
 			*line = ft_strdup("");
 		add(line, buf);
 		if (ft_strchr(buf, '\n'))

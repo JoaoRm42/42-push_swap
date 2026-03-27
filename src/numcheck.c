@@ -10,67 +10,52 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_shared.h"
 
-int	checkerforsymbols(char c)
+static int	checkerforsymbols(char c)
 {
-	if (c == '+' || c == '-')
-		return (1);
-	return (0);
+	return (c == '+' || c == '-');
 }
 
-int	checkerisnum(char c)
+static int	checkerisnum(char c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	return (c >= '0' && c <= '9');
 }
 
-int	checkerforzeros(char *num)
+static int	isint(char *av)
 {
-	int	i;
+	long int	nb;
 
-	i = 0;
-	if (checkerforsymbols(num[i]))
-		i++;
-	while (num[i] && num[i] == '0')
-		i++;
-	if (num[i] != '\0')
-		return (0);
-	return (1);
+	nb = ft_atoi(av);
+	return (nb >= INT_MIN && nb <= INT_MAX);
 }
 
 int	checkerfordigits(char *av)
 {
 	int	i;
 
+	if (!av || !av[0])
+		return (0);
 	i = 0;
-	if (checkerforsymbols(av[i]) && av[i + 1] != '\0')
+	if (checkerforsymbols(av[i]))
 		i++;
+	if (!av[i])
+		return (0);
 	while (av[i] && checkerisnum(av[i]))
 		i++;
-	if (av[i] != '\0' && !checkerisnum(av[i]))
-		return (0);
-	return (1);
+	return (av[i] == '\0');
 }
 
 int	mainchecker(char **av)
 {
 	int	i;
-	int	j;
 
 	i = 1;
-	j = 0;
 	while (av[i])
 	{
-		if (!checkerfordigits(av[i]))
+		if (!checkerfordigits(av[i]) || !isint(av[i]))
 			return (0);
-		j += checkerforzeros(av[i]);
 		i++;
 	}
-	if (j > 1)
-		return (0);
-	if (has_duplicates(av))
-		return (0);
-	return (1);
+	return (!has_duplicates(av));
 }

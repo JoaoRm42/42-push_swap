@@ -32,7 +32,7 @@ static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 }
 
-int	do_moves(t_list **stack_a, t_list **stack_b, char *str)
+static int	do_moves(t_list **stack_a, t_list **stack_b, char *str)
 {
 	if (ft_strncmp(str, "sa\n", 3) == 0)
 		sa(stack_a);
@@ -51,7 +51,7 @@ int	do_moves(t_list **stack_a, t_list **stack_b, char *str)
 	return (1);
 }
 
-void	do_moves2(t_list **stack_a, t_list **stack_b, char *str)
+static int	do_moves2(t_list **stack_a, t_list **stack_b, char *str)
 {
 	if (ft_strncmp(str, "rb\n", 3) == 0)
 		rb(stack_b);
@@ -64,21 +64,23 @@ void	do_moves2(t_list **stack_a, t_list **stack_b, char *str)
 	else if (ft_strncmp(str, "rrr\n", 4) == 0)
 		rrr(stack_a, stack_b);
 	else
-	{
-		write(1, "Error\n", 6);
-		exit(0);
-	}
+		return (0);
+	return (1);
 }
 
-void	getting_str(t_list **stack_a, t_list **stack_b)
+static void	getting_str(t_list **stack_a, t_list **stack_b)
 {
 	char	*str;
 
 	str = get_next_line(0);
 	while (str)
 	{
-		if (!do_moves(stack_a, stack_b, str))
-			do_moves2(stack_a, stack_b, str);
+		if (!do_moves(stack_a, stack_b, str)
+			&& !do_moves2(stack_a, stack_b, str))
+		{
+			free(str);
+			check_error(stack_a, stack_b);
+		}
 		free(str);
 		str = get_next_line(0);
 	}
@@ -91,22 +93,16 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
-	if (ac == 2)
-		if (mainchecker(av))
-			return (0);
-	checkerisnotnum(ac, av);
 	if (!mainchecker(av))
-	{
 		check_error(NULL, NULL);
-		exit(0);
-	}
 	stack_a = init_stack(ac, av);
 	stack_b = NULL;
 	getting_str(&stack_a, &stack_b);
-	if (isshifted(stack_a))
+	if (isshifted(stack_a) && !stack_b)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
 	stack_freeonerror(&stack_a);
 	stack_freeonerror(&stack_b);
+	return (0);
 }

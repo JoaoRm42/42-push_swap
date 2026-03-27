@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_shared.h"
 
 void	stack_freeonerror(t_list **stack)
 {
@@ -29,10 +29,10 @@ void	stack_freeonerror(t_list **stack)
 
 void	check_error(t_list **stack_a, t_list **stack_b)
 {
-	if (stack_a == NULL || *stack_a != NULL)
+	if (stack_a)
 		stack_freeonerror(stack_a);
-	if (stack_b == NULL || *stack_b != NULL)
+	if (stack_b)
 		stack_freeonerror(stack_b);
-	ft_putstr("Error\n");
+	ft_putstr_fd("Error\n", 2);
 	exit (1);
 }

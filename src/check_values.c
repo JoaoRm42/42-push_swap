@@ -12,13 +12,6 @@
 
 #include "push_swap.h"
 
-t_list	*checkebeforevalue(t_list *stack)
-{
-	while (stack->next->next)
-		stack = stack->next;
-	return (stack);
-}
-
 void	checkvalues(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*a;

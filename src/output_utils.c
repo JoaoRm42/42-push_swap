@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_size_bonus.c                                 :+:      :+:    :+:   */
+/*   output_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joaoped2 <joaoped2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 14:03:20 by joaoped2          #+#    #+#             */
-/*   Updated: 2023/04/11 13:26:37 by joaoped2         ###   ########.fr       */
+/*   Created: 2026/03/27 10:30:00 by joaoped2          #+#    #+#             */
+/*   Updated: 2026/03/27 10:30:00 by joaoped2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
+#include "push_swap_shared.h"
 
-int	checkersize(t_list *stack)
+void	ft_putstr(char *str)
+{
+	ft_putstr_fd(str, 1);
+}
+
+void	ft_putstr_fd(char *str, int fd)
 {
 	int	i;
 
 	i = 0;
-	if (!stack)
-		return (0);
-	while (stack)
+	while (str[i])
 	{
-		stack = stack->next;
+		write(fd, &str[i], 1);
 		i++;
 	}
-	return (i);
 }

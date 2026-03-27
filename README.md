@@ -1,21 +1,34 @@
+*This project has been created as part of the 42 curriculum by joaoped2.*
+
 # 42 Push Swap Project
 
 Welcome to the 42 Push Swap Project repository! This project is part of the 42 curriculum, and its goal is to sort data on a stack with a limited set of operations. The challenge is to sort the stack using the fewest number of moves.
 
 ## Table of Contents
+- [Description](#description)
 - [Introduction](#introduction)
+- [Instructions](#instructions)
 - [Project Objectives](#project-objectives)
 - [Requirements](#requirements)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
+- [Resources](#resources)
 - [Acknowledgments](#acknowledgments)
 - [Grade](#grade)
+
+## Description
+
+This repository contains a `push_swap` implementation and a `checker` bonus program for validating instruction sequences. The project focuses on stack operations, input validation, and minimizing the number of moves needed to sort integers in ascending order.
 
 ## Introduction
 
 The Push Swap project is designed to help students understand algorithmic thinking and optimization by sorting data using two stacks and a limited set of operations. This project requires a deep understanding of sorting algorithms, data structures, and algorithmic optimization.
+
+## Instructions
+
+Compilation and execution details are listed in the `Installation` and `Usage` sections below. The project is intended for a Unix-like environment and is built through the provided `Makefile`.
 
 ## Project Objectives
 
@@ -27,56 +40,48 @@ The Push Swap project is designed to help students understand algorithmic thinki
 ## Requirements
 
 - A Unix-based operating system (Linux or macOS).
-- GCC compiler.
+- A `cc`-compatible compiler.
 - Basic understanding of C programming and data structures.
 
 ## Project Structure
 
 Here's a brief overview of the project structure:
 
-```
+```text
 .
-├── srcs
-| ├── check_index.c
-| ├── check_postarget.c
-| ├── check_size.c
-| ├── check_values.c
-| ├── duplicates.c
-| ├── error.c
-| ├── init_stack.c
-│ ├── main.c
-| ├── numcheck.c
-| ├── opshifting.c
-| ├──  push_swap.h
-| ├── reverse_rotate.c
-| ├── rotate.c
-| ├── rotatenreverserotutils.c
-| ├── swap.c
-| ├── swap2.c
-│ └── utils.c
-├── bonus
-| ├── check_index_bonus.c
-| ├── check_postarget_bonus.c
-| ├── check_size_bonus.c
-| ├── check_values_bonus.c
-| ├── duplicates_bonus.c
-| ├── error_bonus.c
-| ├── get_next_line_bonus.c
-| ├── get_next_line_bonus.h
-| ├── get_next_line_bonus_utils.c
-| ├── init_stack_bonus.c
-│ ├── main_bonus.c
-| ├── numcheck_bonus.c
-| ├── opshifting_bonus.c
-| ├──  push_swap_bonus.h
-| ├── reverse_rotate_bonus.c
-| ├── rotate_bonus.c
-| ├── rotatenreverserotutils_bonus.c
-| ├── swap_bonus.c
-| ├── swap2_bonus.c
-│ └── utils_bonus.c
-├── Makefile
-└── README.md
+|-- src
+|   |-- check_index.c
+|   |-- check_postarget.c
+|   |-- check_size.c
+|   |-- check_values.c
+|   |-- duplicates.c
+|   |-- error.c
+|   |-- init_stack.c
+|   |-- main.c
+|   |-- numcheck.c
+|   |-- opshifting.c
+|   |-- push_swap.h
+|   |-- push_swap_shared.h
+|   |-- reverse_rotate.c
+|   |-- rotate.c
+|   |-- rotatenreverserotutils.c
+|   |-- stack_ops_core.c
+|   |-- stack_state.c
+|   |-- swap.c
+|   |-- swap2.c
+|   `-- utils.c
+|-- bonus
+|   |-- get_next_line_bonus.c
+|   |-- get_next_line_bonus.h
+|   |-- get_next_line_utils_bonus.c
+|   |-- main_bonus.c
+|   |-- push_swap_bonus.h
+|   |-- reverse_rotate_bonus.c
+|   |-- rotate_bonus.c
+|   |-- swap_bonus.c
+|   `-- swap2_bonus.c
+|-- Makefile
+`-- README.md
 ```
 
 ## Installation
@@ -104,7 +109,7 @@ To use the `push_swap` program, provide a list of integers as arguments. The pro
     ```
 
 2. **Checker Program**:
-    Additionally, you may use the `checker` program to verify if your sorting is correct (if implemented).
+    Additionally, you may use the `checker` program to verify if your sorting is correct.
 
     ```bash
     ./checker 3 2 1
@@ -116,6 +121,12 @@ To use the `push_swap` program, provide a list of integers as arguments. The pro
 
 Contributions are welcome! If you have any suggestions or improvements, feel free to create an issue or submit a pull request. Please ensure that your contributions adhere to the coding standards and guidelines of the project.
 
+## Resources
+
+- 42 subject and intra resources for the official project requirements and evaluation criteria.
+- The Linux `man` pages for `write`, `read`, `malloc`, `free`, and `exit`.
+- General references on stack-based sorting and operation counting for `push_swap`.
+- AI usage: AI was used to review conformance against the subject, identify edge cases in parsing and checker behavior, and help refactor shared stack-operation logic. The resulting changes were then validated manually with compilation, `norminette`, `valgrind`, and random benchmark tests.
 
 ## Acknowledgments
 

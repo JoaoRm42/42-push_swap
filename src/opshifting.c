@@ -77,14 +77,3 @@ void	swap(t_list **stack_a, t_list **stack_b, int ac)
 	else if (ac > 3 && (!isshifted(*stack_a)))
 		shifting(stack_a, stack_b);
 }
-
-int	isshifted(t_list *stack)
-{
-	while (stack->next != NULL)
-	{
-		if (stack->valor > stack->next->valor)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}

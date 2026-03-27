@@ -29,4 +29,5 @@ int	main(int ac, char **av)
 	swap(&stack_a, &stack_b, size);
 	stack_freeonerror(&stack_a);
 	stack_freeonerror(&stack_b);
+	return (0);
 }

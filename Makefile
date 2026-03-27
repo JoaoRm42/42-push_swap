@@ -12,43 +12,39 @@
 
 NAME	= push_swap
 NAMEB	= checker
-CC		= clang
+CC		= cc
 CFLAGS 	= -Wall -Wextra -Werror -g
-SRC		= src/main.c\
+COMMON_SRC	= src/check_size.c\
+			  src/duplicates.c\
+			  src/error.c\
+			  src/init_stack.c\
+			  src/numcheck.c\
+			  src/output_utils.c\
+			  src/stack_ops_core.c\
+			  src/stack_state.c\
+			  src/utils.c
+
+SRC		= $(COMMON_SRC)\
+		  src/main.c\
 		  src/check_index.c\
 		  src/check_postarget.c\
-		  src/check_size.c\
 		  src/check_values.c\
-		  src/duplicates.c\
-		  src/error.c\
-		  src/init_stack.c\
 		  src/reverse_rotate.c\
 		  src/rotate.c\
-		  src/numcheck.c\
 		  src/rotatenreverserotutils.c\
 		  src/opshifting.c\
 		  src/swap.c\
-		  src/swap2.c\
-		  src/utils.c
+		  src/swap2.c
 
-SRCB	= bonus/main_bonus.c\
-		  bonus/check_index_bonus.c\
-		  bonus/check_postarget_bonus.c\
-		  bonus/check_size_bonus.c\
-		  bonus/check_values_bonus.c\
-		  bonus/duplicates_bonus.c\
-		  bonus/error_bonus.c\
-		  bonus/init_stack_bonus.c\
+SRCB	= $(COMMON_SRC)\
+		  bonus/main_bonus.c\
 		  bonus/reverse_rotate_bonus.c\
 		  bonus/rotate_bonus.c\
-		  bonus/numcheck_bonus.c\
-		  bonus/rotatenreverserotutils_bonus.c\
-		  bonus/opshifting_bonus.c\
 		  bonus/swap_bonus.c\
 		  bonus/swap2_bonus.c\
-		  bonus/utils_bonus.c\
 		  bonus/get_next_line_bonus.c\
 		  bonus/get_next_line_utils_bonus.c
+
 OBJ		= $(SRC:.c=.o)
 OBJB	= $(SRCB:.c=.o)
 GREEN		=	\033[0;32m
@@ -56,12 +52,16 @@ RED 		=	\033[0;31m
 YELLOW		=	\033[0;33m
 RESET		=	\033[0m
 
-all: 	$(OBJ)
+all: 	$(NAME)
+
+$(NAME): $(OBJ)
 		@echo "$(RED)[ .. ]Compiling Mandatory[ .. ]$(RESET)"
 		@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 		@echo "$(GREEN)[ OK ]$(RESET)$(YELLOW)Mandatory Ready!$(RESET)$(GREEN)[ OK ]$(RESET)"
 
-bonus:	$(OBJB)
+bonus:	$(NAMEB)
+
+$(NAMEB): $(OBJB)
 		@echo "$(RED)[ .. ]Compiling Bonus[ .. ]$(RESET)"
 		@$(CC) $(CFLAGS) $(OBJB) -o $(NAMEB)
 		@echo "$(GREEN)[ OK ]$(RESET)$(YELLOW)Bonus Ready!$(RESET)$(GREEN)[ OK ]$(RESET)"
@@ -84,3 +84,5 @@ fclean: clean
 
 re: fclean all
 reb: fclean bonus
+
+.PHONY: all bonus clean fclean re reb

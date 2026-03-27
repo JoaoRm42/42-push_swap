@@ -12,37 +12,25 @@
 
 #include "push_swap.h"
 
-void	reverse(t_list **stack)
-{
-	t_list	*tmp;
-	t_list	*n;
-
-	tmp = *stack;
-	*stack = (*stack)->next;
-	n = checknextvalue(*stack);
-	tmp->next = NULL;
-	n->next = tmp;
-}
-
 //ra (rotate a)
 void	ra(t_list **stack)
 {
-	reverse(stack);
+	stack_rotate(stack);
 	ft_putstr("ra\n");
 }
 
 //rb (rotate b)
 void	rb(t_list **stack)
 {
-	reverse(stack);
+	stack_rotate(stack);
 	ft_putstr("rb\n");
 }
 
 //rr (ra and rb)
 void	rr(t_list **stack_a, t_list **stack_b)
 {
-	reverse(stack_a);
-	reverse(stack_b);
+	stack_rotate(stack_a);
+	stack_rotate(stack_b);
 	ft_putstr("rr\n");
 }
 
